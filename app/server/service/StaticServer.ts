@@ -8,6 +8,7 @@ export class StaticServer {
     start() {
         http.createServer(function (request, response) {
             let filePath = request.url;
+
             if (filePath === '/' || filePath === '') {
                 filePath = '/index.html';
             }
@@ -41,6 +42,9 @@ export class StaticServer {
                         fs.readFile(path.resolve(__dirname, `../../${filePath}`), (error, content) => {//TODO better management for shared
                             if (error) {
                                 if(error.code == 'ENOENT') {
+                                    if(filePath.indexOf('/theory') === 0) {//TODO find better to search in node_modules
+                                        filePath = filePath.substring(7);
+                                    }
                                     fs.readFile(path.resolve(__dirname, `../../../node_modules/${filePath}`), (error, content) => {//TODO better management for shared
                                         if (error) {
                                             if (error.code == 'ENOENT') {
