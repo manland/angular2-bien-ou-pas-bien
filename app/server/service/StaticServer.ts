@@ -34,6 +34,9 @@ export class StaticServer {
                 case '.wav':
                     contentType = 'audio/wav';
                     break;
+                case '.svg':
+                    contentType = 'image/svg+xml';
+                    break;
             }
 
             fs.readFile(path.resolve(__dirname, `../../client${filePath}`), (error, content) => {

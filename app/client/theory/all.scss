@@ -84,20 +84,38 @@ body, a {
 h1 {
   font-size: 6em;
   display: block;
-  text-align: center;
   margin: 0 0 60px 0;
 }
-h2, ul li {
+h2, ul {
   font-size: 3em;
 }
-
 ul {
+  text-align: left;
   list-style-type: disc;
+  margin-left: 10%;
+}
+ul.minus {
+  font-size: 2em;
+}
+
+hr {
+  width: 20%;
+}
+
+i {
+  font-style: italic;
+  font-size: 0.5em;
 }
 
 .slideContainer {
   @include centerer;
+  text-align: center;
+  width: 80%;
   padding-bottom: 50px;//because of footer we need to up block
+}
+
+img {
+  max-width: 50%;
 }
 
 footer {
