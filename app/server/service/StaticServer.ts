@@ -46,7 +46,17 @@ export class StaticServer {
                             if (error) {
                                 if(error.code == 'ENOENT') {
                                     if(filePath.indexOf('/theory') === 0) {//TODO find better to search in node_modules
-                                        filePath = filePath.substring(7);
+                                        filePath = filePath.substring('/theory'.length);
+                                    } else if(filePath.indexOf('/firstCompo') === 0) {
+                                        filePath = filePath.substring('/firstCompo'.length);
+                                    } else if(filePath.indexOf('/useCompo') === 0) {
+                                        filePath = filePath.substring('/useCompo'.length);
+                                    } else if(filePath.indexOf('/httpService') === 0) {
+                                        filePath = filePath.substring('/httpService'.length);
+                                    } else if(filePath.indexOf('/firstService') === 0) {
+                                        filePath = filePath.substring('/firstService'.length);
+                                    } else if(filePath.indexOf('/firstRoute') === 0) {
+                                        filePath = filePath.substring('/firstRoute'.length);
                                     }
                                     fs.readFile(path.resolve(__dirname, `../../../node_modules/${filePath}`), (error, content) => {//TODO better management for shared
                                         if (error) {
@@ -85,7 +95,7 @@ export class StaticServer {
                 }
             });
 
-        }).listen(8125);
-        console.log('Server running at http://127.0.0.1:8125/');
+        }).listen(8122);
+        console.log('Server running at http://127.0.0.1:8122/');
     }
 }

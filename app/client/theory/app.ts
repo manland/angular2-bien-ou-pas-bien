@@ -1,6 +1,6 @@
 import {bootstrap} from "@angular/platform-browser-dynamic";
-import {Component, DynamicComponentLoader, ElementRef, Injector, Type, ViewChild, HostListener} from "@angular/core";
-import {Http, HTTP_PROVIDERS, Response} from '@angular/http';
+import {Component, ElementRef, ViewChild, HostListener} from "@angular/core";
+import {Http, HTTP_PROVIDERS, Response} from "@angular/http";
 
 @Component({
     selector: 'my-app',
