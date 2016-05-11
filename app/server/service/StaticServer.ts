@@ -2,100 +2,73 @@ import * as http from 'http';
 import * as fs from 'fs';
 import * as path from 'path';
 import {Service} from "../annotation/Service";
+import {IncomingMessage, ServerResponse} from "http";
+import {Promise} from 'es6-shim';
 
 @Service()
 export class StaticServer {
+
+    static CONTENT_TYPES: {[extname: string]: string} = {
+        '.js': 'text/javascript',
+        '.css': 'text/css',
+        '.json': 'application/json',
+        '.png': 'image/png',
+        '.jpg': 'image/jpg',
+        '.gif': 'image/gif',
+        '.svg': 'image/svg+xml',
+        '.wav': 'audio/wav'
+    };
+
+    static DIRECTORIES: Array<string> = ['theory', 'firstCompo', 'useCompo', 'httpService', 'firstService', 'firstRoute'];
+
     start() {
-        http.createServer(function (request, response) {
+        http.createServer((request: IncomingMessage, response: ServerResponse) => {
             let filePath = request.url;
-
-            if (filePath === '/' || filePath === '') {
-                filePath = '/index.html';
+            const directory = StaticServer.DIRECTORIES.find((dir: string) => filePath.indexOf(`/${dir}`) === 0);
+            if (filePath === '/' || filePath === '') {
+                filePath = filePath + '/index.html';
+            } else if (directory && filePath === `/${directory}/`) {
+                filePath = `/${directory}/index.html`;
             }
 
-            const extname = path.extname(filePath);
-            let contentType = 'text/html';
-            switch (extname) {
-                case '.js':
-                    contentType = 'text/javascript';
-                    break;
-                case '.css':
-                    contentType = 'text/css';
-                    break;
-                case '.json':
-                    contentType = 'application/json';
-                    break;
-                case '.png':
-                    contentType = 'image/png';
-                    break;
-                case '.jpg':
-                    contentType = 'image/jpg';
-                    break;
-                case '.wav':
-                    contentType = 'audio/wav';
-                    break;
-                case '.svg':
-                    contentType = 'image/svg+xml';
-                    break;
-            }
+            this.sendFile(response, path.resolve(__dirname, `../../${filePath}`))
+                .catch(() => this.sendFile(response, path.resolve(__dirname, `../../${filePath}`)))
+                .catch(() => this.sendFile(response, path.resolve(__dirname, `../../client${filePath}`)))
+                .catch(() => {
+                    if(directory) {
+                        filePath = filePath.substring(`/${directory}`.length);
+                    }
+                    return this.sendFile(response, path.resolve(__dirname, `../../../node_modules${filePath}`));
+                })
+                .catch(() => {
+                    console.error('404 NOT FOUND', filePath);
+                    response.writeHead(404);
+                    response.end();
+                });
 
-            fs.readFile(path.resolve(__dirname, `../../client${filePath}`), (error, content) => {
+        }).listen(8122);
+        console.log('Server running at http://127.0.0.1:8122/');
+    }
+
+    private sendFile(response: ServerResponse, absolutePathFile: string): Promise<void> {
+        const contentType = StaticServer.CONTENT_TYPES[path.extname(absolutePathFile)] || 'text/html';
+        return new Promise<void>((resolve: () => any, reject: (error?: any) => any) => {
+            fs.readFile(absolutePathFile, (error, content) => {
                 if (error) {
                     if(error.code == 'ENOENT') {
-                        fs.readFile(path.resolve(__dirname, `../../${filePath}`), (error, content) => {//TODO better management for shared
-                            if (error) {
-                                if(error.code == 'ENOENT') {
-                                    if(filePath.indexOf('/theory') === 0) {//TODO find better to search in node_modules
-                                        filePath = filePath.substring('/theory'.length);
-                                    } else if(filePath.indexOf('/firstCompo') === 0) {
-                                        filePath = filePath.substring('/firstCompo'.length);
-                                    } else if(filePath.indexOf('/useCompo') === 0) {
-                                        filePath = filePath.substring('/useCompo'.length);
-                                    } else if(filePath.indexOf('/httpService') === 0) {
-                                        filePath = filePath.substring('/httpService'.length);
-                                    } else if(filePath.indexOf('/firstService') === 0) {
-                                        filePath = filePath.substring('/firstService'.length);
-                                    } else if(filePath.indexOf('/firstRoute') === 0) {
-                                        filePath = filePath.substring('/firstRoute'.length);
-                                    }
-                                    fs.readFile(path.resolve(__dirname, `../../../node_modules/${filePath}`), (error, content) => {//TODO better management for shared
-                                        if (error) {
-                                            if (error.code == 'ENOENT') {
-                                                console.error('404 NOT FOUND', path.resolve(__dirname, `../../client${filePath}`));
-                                                response.writeHead(404);
-                                                response.end();
-                                            } else {
-                                                response.writeHead(500);
-                                                response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
-                                                response.end();
-                                            }
-                                        } else {
-                                            response.writeHead(200, { 'Content-Type': contentType });
-                                            response.end(content, 'utf-8');
-                                        }
-                                    });
-                                } else {
-                                    response.writeHead(500);
-                                    response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
-                                    response.end();
-                                }
-                            } else {
-                                response.writeHead(200, { 'Content-Type': contentType });
-                                response.end(content, 'utf-8');
-                            }
-                        });
+                        reject(404);
                     } else {
                         response.writeHead(500);
                         response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
                         response.end();
+                        reject(500);
                     }
                 } else {
                     response.writeHead(200, { 'Content-Type': contentType });
                     response.end(content, 'utf-8');
+                    resolve();
                 }
             });
-
-        }).listen(8122);
-        console.log('Server running at http://127.0.0.1:8122/');
+        });
     }
 }

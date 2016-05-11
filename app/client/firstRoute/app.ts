@@ -3,7 +3,7 @@ import {Component} from "@angular/core";
 import {HTTP_PROVIDERS} from "@angular/http";
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Routes} from "@angular/router";
 import {Talks} from "./Talks/Talks";
-import {Talk} from "./Talk/Talk";
+import {TalkDetails} from "./TalkDetails/TalkDetails";
 
 @Component({
     selector: 'my-app',
@@ -12,7 +12,7 @@ import {Talk} from "./Talk/Talk";
 })
 @Routes([
     {path: '/', component: Talks},
-    {path: '/talks', component: Talk}
+    {path: '/talks/:id', component: TalkDetails}
 ])
 export class App {
 
