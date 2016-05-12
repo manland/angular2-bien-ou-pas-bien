@@ -1,15 +1,14 @@
 import {Component, Input} from "@angular/core";
 import {ROUTER_DIRECTIVES, OnActivate, RouteSegment} from "@angular/router";
 import {TalkModel, Talk} from "../Talk/Talk";
-import {Server, SERVER_PROVIDERS} from "../Server";
 import "rxjs/add/operator/filter";
+import {Server} from "../Server";
 
 @Component({
     selector: 'talk-details',
     template: `<div *ngIf="talk"><talk [talk]="talk"></talk></div>`,
     directives: [Talk],
-    styleUrls: ['Talk/Talk.css'],
-    providers: [SERVER_PROVIDERS]
+    styleUrls: ['Talk/Talk.css']
 })
 export class TalkDetails implements OnActivate {
 

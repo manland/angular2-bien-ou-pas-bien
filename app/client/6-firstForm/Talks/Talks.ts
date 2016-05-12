@@ -1,11 +1,10 @@
 import {Component} from "@angular/core";
 import {Talk, TalkModel} from "../Talk/Talk";
-import {Server, SERVER_PROVIDERS} from "../Server";
+import {Server} from "../Server";
 
 @Component({
     template: `<talk *ngFor="let talk of talks" [talk]="talk"></talk>`,
-    directives: [Talk],
-    providers: [SERVER_PROVIDERS]
+    directives: [Talk]
 })
 export class Talks {
 

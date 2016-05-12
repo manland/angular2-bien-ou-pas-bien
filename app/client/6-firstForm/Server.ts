@@ -8,6 +8,7 @@ import {SubjectSubscription} from "rxjs/SubjectSubscription";
 
 export abstract class Server {
     abstract getTalks(): Observable<TalkModel>;
+    abstract saveTalk(talk: TalkModel): Promise<TalkModel>;
 }
 
 @Injectable()
@@ -17,7 +18,6 @@ export class ServerRest extends Server {
 
     constructor(private http: Http) {
         super();
-        console.log('NEW SERVER');
     }
 
     getTalks(): Observable<TalkModel> {
@@ -35,6 +35,14 @@ export class ServerRest extends Server {
             });
         }
         return subject;
+    }
+
+    saveTalk(talk:TalkModel):Promise<TalkModel> {
+        return new Promise((complete: (talk: TalkModel) => any) => {
+            const newTalk = {id: this.talks.length, speaker: {avatar: talk.speaker.avatar}, title: talk.title, description: talk.description};
+            this.talks.push(newTalk);
+            complete(newTalk);
+        });
     }
 
     private get(url: string): Observable<any> {
