@@ -16,7 +16,7 @@ import {Http, HTTP_PROVIDERS, Response} from "@angular/http";
 export class App {
 
     private ID_SLIDE_MIN: number = 0;
-    private ID_SLIDE_MAX: number = 5;
+    private ID_SLIDE_MAX: number = 20;
 
     @ViewChild('slide', true)
     slide: ElementRef;

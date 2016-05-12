@@ -19,7 +19,7 @@ export class StaticServer {
         '.wav': 'audio/wav'
     };
 
-    static DIRECTORIES: Array<string> = ['theory', 'firstCompo', 'useCompo', 'httpService', 'firstService', 'firstRoute'];
+    static DIRECTORIES: Array<string> = ['0-theory', '1-firstCompo', '2-useCompo', '3-httpService', '4-firstService', '4.1-firstServiceInterface', '5-firstRoute'];
 
     start() {
         http.createServer((request: IncomingMessage, response: ServerResponse) => {
