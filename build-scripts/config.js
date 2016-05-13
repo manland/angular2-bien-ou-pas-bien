@@ -12,7 +12,11 @@ module.exports.client = {
             files: [
                 './node_modules/systemjs/dist/system.js',
                 './node_modules/systemjs/dist/system.src.js',
-                './node_modules/systemjs/dist/system.js.map'
+                './node_modules/systemjs/dist/system.js.map',
+                './node_modules/jasmine-core/lib/jasmine-core/jasmine.css',
+                './node_modules/jasmine-core/lib/jasmine-core/jasmine.js',
+                './node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js',
+                './node_modules/jasmine-core/lib/jasmine-core/boot.js'
             ],
             dest: './build/client/'
         }

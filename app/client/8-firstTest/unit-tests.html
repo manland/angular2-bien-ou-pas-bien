@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>Ng App Unit Tests</title>
+    <link rel="stylesheet" href="/jasmine-core/lib/jasmine-core/jasmine.css">
+    <script src="/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script src="/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="/jasmine-core/lib/jasmine-core/boot.js"></script>
+    <script src="/system.js"></script>
+</head>
+<body>
+
+<script>
+    System.config({
+        defaultJSExtensions: true,
+        meta: {
+            '@angular/*': {
+                deps: ['es6-shim', 'zone', 'reflect-metadata']
+            },
+            'reflect-metadata': {
+                format: 'global'
+            },
+            'zone': {
+                format: 'global'
+            }
+        },
+        map: {
+            '@angular/core': '@angular/core/index.js',
+            '@angular/common': '@angular/common/index.js',
+            '@angular/platform-browser-dynamic': '@angular/platform-browser-dynamic/index.js',
+            '@angular/platform-browser': '@angular/platform-browser/index.js',
+            '@angular/compiler': '@angular/compiler/index.js',
+            '@angular/http': '@angular/http/index.js',
+            '@angular/router': '@angular/router/index.js',
+            'reflect-metadata': 'reflect-metadata/Reflect.js',
+            'es6-shim': 'es6-shim/es6-shim.js',
+            'zone': 'zone.js/dist/zone.js'
+        }
+    });
+
+    System.import('Server.spec')
+            .then(window.onload)
+            .catch(console.error.bind(console));
+</script>
+
+</body>
+</html>

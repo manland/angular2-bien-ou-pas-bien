@@ -21,7 +21,7 @@ export class StaticServer {
 
     static DIRECTORIES: Array<string> = [
         '0-theory', '1-firstCompo', '2-useCompo', '3-httpService', '4-firstService', '4.1-firstServiceInterface',
-        '5-firstRoute', '5.1-firstRouteOneServer', '6-firstForm', '7-firstDirective'
+        '5-firstRoute', '5.1-firstRouteOneServer', '6-firstForm', '7-firstDirective', '8-firstTest'
     ];
 
     start() {
@@ -33,6 +33,8 @@ export class StaticServer {
             } else if (directory && filePath === `/${directory}/`) {
                 filePath = `/${directory}/index.html`;
             }
+
+            filePath = filePath.split('?')[0];
 
             this.sendFile(response, path.resolve(__dirname, `../../${filePath}`))
                 .catch(() => this.sendFile(response, path.resolve(__dirname, `../../${filePath}`)))
