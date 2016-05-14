@@ -1,5 +1,5 @@
 import {ServerRest} from './Server';
-import {TalkModel} from "./talk/Talk";
+import {TalkModel} from "./Talk/Talk";
 import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs/Observer";
 import "rxjs/add/operator/toArray";
