@@ -4,7 +4,6 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import {TalkModel} from "./Talk/Talk";
 import {Subject} from "rxjs/Subject";
-import {SubjectSubscription} from "rxjs/SubjectSubscription";
 
 export abstract class Server {
     abstract getTalks(): Observable<TalkModel>;

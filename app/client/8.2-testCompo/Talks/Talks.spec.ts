@@ -6,7 +6,6 @@ import {Observer} from "rxjs/Observer";
 import {TalkModel} from "../Talk/Talk";
 import {Talks} from '../Talks/Talks';
 import 'rxjs/add/observable/of';
-import {Talk} from "../Talk/Talk";
 
 const fakeTalks = [{id: 0, speaker: {avatar: 'avatar'}, title: 'title', description: 'description'}];
 
