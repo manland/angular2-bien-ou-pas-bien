@@ -14,7 +14,7 @@ interface TalkModel {
         <h1 class="talk-title">{{talk.title}}</h1>
         <p class="talk-description">{{talk.description}}</p>
     </div>`,
-    styleUrls: ['talk/Talk.css']
+    styleUrls: ['Talk/Talk.css']
 })
 export class Talk {
 

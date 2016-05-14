@@ -1,6 +1,6 @@
 import {bootstrap} from "@angular/platform-browser-dynamic";
 import {Component} from "@angular/core";
-import {Talk, TalkModel} from "./talk/Talk";
+import {Talk, TalkModel} from "./Talk/Talk";
 
 @Component({
     selector: 'my-app',

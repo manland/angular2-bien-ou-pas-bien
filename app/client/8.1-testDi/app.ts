@@ -11,7 +11,8 @@ import {SERVER_PROVIDERS} from "./Server";
     selector: 'my-app',
     template: `
         <header>
-            <a [routerLink]="['/']">Home</a> - <a [routerLink]="['/edit']">Add</a>
+            <a [routerLink]="['/']"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+            <a [routerLink]="['/edit']"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</a>
         </header>
         <router-outlet></router-outlet>`,
     directives: [ROUTER_DIRECTIVES]

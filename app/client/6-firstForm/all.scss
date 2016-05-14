@@ -81,6 +81,25 @@ body, a {
   text-decoration: none;
 }
 
+header {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #ccc;
+  margin: 0 0 20px 0;
+
+  & a {
+    margin: 0 20px;
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 2px;
+    color: #222;
+
+    & i {
+      padding-right: 5px;
+    }
+  }
+}
+
 h1 {
   font-size: 6em;
   display: block;
