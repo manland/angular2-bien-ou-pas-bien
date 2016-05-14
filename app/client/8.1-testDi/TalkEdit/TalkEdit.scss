@@ -1,0 +1,20 @@
+.ng-valid[required],
+.ng-invalid {
+  border: 1px solid #666;
+  border-radius: 3px;
+  height: 24px;
+  line-height: 24px;
+}
+
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.talkEdit-errorMessage {
+  background-color: lightcoral;
+  color: darkred;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>Ng App Unit Tests</title>
+    <link rel="stylesheet" href="/jasmine-core/lib/jasmine-core/jasmine.css">
+    <script src="/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script src="/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="/jasmine-core/lib/jasmine-core/boot.js"></script>
+    <script src="/system.js"></script>
+</head>
+<body>
+
+<script>
+    System.config({
+        defaultJSExtensions: true,
+        meta: {
+            '@angular/*': {
+                deps: ['es6-shim', 'zone', 'reflect-metadata']
+            },
+            'reflect-metadata': {
+                format: 'global'
+            },
+            'zone': {
+                format: 'global'
+            },
+            'Talks/Talks.spec': {
+                deps: ['zone-async-test', 'zone-fake-async-test']
+            }
+        },
+        map: {
+            '@angular/core/testing': '@angular/core/testing.js',
+            '@angular/core': '@angular/core/index.js',
+            '@angular/common/testing': '@angular/common/testing.js',
+            '@angular/common': '@angular/common/index.js',
+            '@angular/platform-browser-dynamic/testing': '@angular/platform-browser-dynamic/testing.js',
+            '@angular/platform-browser-dynamic': '@angular/platform-browser-dynamic/index.js',
+            '@angular/platform-browser/testing': '@angular/platform-browser/testing.js',
+            '@angular/platform-browser': '@angular/platform-browser/index.js',
+            '@angular/compiler/testing': '@angular/compiler/testing.js',
+            '@angular/compiler': '@angular/compiler/index.js',
+            '@angular/http': '@angular/http/index.js',
+            '@angular/router/testing': '@angular/router/testing.js',
+            '@angular/router': '@angular/router/index.js',
+            'reflect-metadata': 'reflect-metadata/Reflect.js',
+            'es6-shim': 'es6-shim/es6-shim.js',
+            'zone': 'zone.js/dist/zone.js',
+            'zone-async-test': 'zone.js/dist/async-test',
+            'zone-fake-async-test': 'zone.js/dist/fake-async-test'
+        }
+    });
+
+    var GLOBAL_TESTS_LIBS = ['@angular/core/testing', '@angular/platform-browser-dynamic/testing'];
+    var tests = ['Server.spec', 'Talks/Talks.spec', 'Talk/Talk.spec'];
+
+    var toLoad = [].concat(GLOBAL_TESTS_LIBS, tests);
+    var toImport = [];
+    for(var i=0; i<toLoad.length; i++) {
+        toImport.push(System.import(toLoad[i]));
+    }
+
+    Promise.all(toImport)
+            .then(function(imports) {
+                var coreTesting = imports[0];
+                var browserTesting = imports[1];
+                coreTesting.setBaseTestProviders(browserTesting.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, browserTesting.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
+                window.onload();
+            })
+            .catch(console.error.bind(console));
+</script>
+
+</body>
+</html>
