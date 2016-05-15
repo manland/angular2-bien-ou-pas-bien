@@ -1,0 +1,226 @@
+slide 1 :
+
+Jug recherche des jug-leaders pour aider
+On boit un coup et on organise
+
+slide 2 :
+
+Utilisateurs souris/souris
+dernier h-days (3 jours) angular2
+
+slide 3 :
+
+it-saucisse : bouche à oreille (confidentiel pas plus de 100), venir me voir et/ou une boite déjà dans la boucle (géomatys, tabmo) et/ou suivre mon compte twitter pour être au courant (seulement s'il reste de la place)
+
+slide 4 :
+
+Sommaire
+
+slide 5 :
+
+Itération théory -> code -> démo -> théory...
+
+slide 6 :
+
+Souvent on le prend comme ça
+
+slide 7 :
+
+Beaucoup de concepts compliqués
+Un durty checking dev au fil de l'eau
+
+Plein de nouvelles choses dans le web
+
+Angular est vieux
+
+slide 8 :
+
+Angular 2 doit être modulaire car :
+- ng2 est complet et complexe === pouvoir choisir les bonnes briques pour notre appli
+- le web va vite === pouvoir changer une brique (d'angular2 ou pas) par une autre
+
+Non lié au dom permet de faire du rendu server side, dans les web-worker, dans les mobiles...
+
+Le web est de plus en plus compliqué (npm, bower, gulp, grunt, webpack, sass, less...) et encore plus web, server, native === simplifié tout ça
+
+Google pousse Dart === il faut qu'angular transpile vers dart mais aussi vers le web (es5, es6)
+
+slide 9 :
+
+Rentrons dans le vif du sujet
+
+slide 10 :
+
+{{}} rendu simple (comme avant)
+| les filtres deviennent des pipes mais c'est le même concept
+* === besoin d'une modification de dom (template)
+[] === input => unidirectionnel (attention js var par référence)
+() === outup => prévenir d'un changement du fils vers le père, marche aussi avec les events natifs du DOM
+my-compo === utilisation d'un composant, comme avant avec directives
+
+slide 11 :
+
+ouvrir intellij pour montrer :
+- Talk.ts : @Componant()
+- app.ts : simple composant mais avec bootstrap
+
+slide 12 :
+
+ouvrir intellij :
+
+- Talk/Talk.ts
+
+before : talk: TalkModel = {...};
+after : @Input() talk: TalkModel;
+
+- app.ts
+
+before : template: `<Talk></Talk>`
+after : template: <talk *ngFor="let talk of talks" [talk]="talk"></talk>
+	talks: Array<TalkModel> = [{...}]
+
+slide 13 :
+
+- provider === ajouter dans l'injector
+- injecter : par contructor
+- angular fait le reste
+
+slide 14 :
+
+ouvrir intellij pour montre app.ts : import provider + ajout + injection http et utilisation
+Explication rapide sur RxJs subscribe
+les data sont dans les assets
+
+slide 15 :
+
+Un service est une classe es6 normale
+Ajouter @Injectbale() Attention !! Ne veut pas dire qu'il est injectable mais bien qu'il peu recevoir une injection (!== @Service()) !!
+Et puis idem aux autres services : provider et injecter
+
+slide 16 :
+
+montrer Server.ts tout pareil qu'avant
+montrer app.ts avec l'utilisation de Server.ts
+
+slide 17 :
+
+1 injector === 1 ensemble de classes + optionnel relié à l'injector parent
+1 classe est référencée par un token (qui par défaut est la classe elle même)
+ça nous permet d'utiliser une interface comme token et une implémentation comme classe (enfin pas tout à fait car après la compilation les interfaces n'existent pas)
+si on découple le token et l'implémentation, l'utilisateur final pourra overrider notre implémentation
+
+slide 18 :
+
+montrer Server.ts : 
+- Server est une abstract classe à cause de typescript (pas d'interface)
+- L'ancien Server devient ServerRest (l'implémentation)
+- On export un array de providers qui sont des classes ou des objets token + classe
+
+app.ts : montrer l'utilisation
+
+slide 19 :
+
+On a vu que Injectable() !== @Service, on a qu'à le coder !
+
+slide 20 :
+
+Les sources dans le projet, dans le server...
+
+@Service() tout en bas est une annotation (enfin un décorator...), sauvegarde toutes les classes qui lui sont passés, si un token particulier est donné on l'utilise et on marque le token comme pouvant être multiple
+on remplassera le bootstrap standard d'angular par le notre
+
+Slide 21 :
+
+Création de notre 1er Service multiple, expliqué le context d'isodash... H-DayZ ITK
+
+Slide 22 :
+
+Récupération de nos fetchers par token (et non par classe)
+
+Slide 23 :
+
+C'est pas tout à fait stable mais plutôt non documenté... Permettra de faire pas mal de chose comme multiple vues par route (décrochage droite/gauche)
+La plus part des tutos sont basés sur @angular/router-deprecated
+
+Slide 24 :
+
+Pour activer le router il faut ajouter ses providers qui viennent overrider ceux par défaut d'angular (qui ne font rien)
+Il faut ajouter les directives si on souhaite l'utiliser dans les templates
+Et finalement déclarer nos routes
+
+Slide 25 :
+
+- montrer app.ts : providers, directives, routes => ng-outlets ! Petit bug en rc1 obligeant à avoir une route dans l'app principale donc dans template lien vide
+- montrer index.html : base href old html5 du router (sans #)
+- montrer les nouveaux compos talks et talkDetail
+- ajout d'id dans la data et montrer lien talk
+
+- finir par le nouveau Server.ts avec mini-cache mais problème... montrer console browser
+
+Slide 26 :
+
+- rappel du provide() des compos et création d'un nouveau server à chaque création de compo
+- mais comme injector tire du père on peu passer outre pour faire un vrai singleton
+
+Slide 27 :
+
+- on a supprimer provide des compo talks et talkDetail
+- montrer app.ts pour provide global
+
+Slide 28 :
+
+Les formulaires nous on toujours posés problèmes : ng-options, ng-messages, ng-submit + ng-click sur bouton cause double send
+
+Slide 29 :
+
+Pas de bol c'est presque tout pareil
+
+Slide 30 :
+
+- montrer app.ts : new route + template header pour naviguer
+- montrer Server.ts : ajout de la méthode save
+- montrer TalkEdit.ts : 
+	- nouveau concept de # === référence dans le dom : mais #talkForm="ngForm" permet de référencé le controller ngForm au lieu du dom
+	- [(ngModel)] === double data binding pour récupérer input
+	- ngControl="avatarUrl" permet d'activer les validators
+	- #avatarUrl="ngForm" permet d'accéder au ngControl de l'élément et donc d'afficher cacher les messages d'erreur
+	- (ngSubmit) pour savoir quand l'utilisateur valide
+
+Slide 31 :
+
+On check pas qu'une url est bien une url, pour faire ça on fait une directive === composant sans view
+
+Slide 32 :
+
+- montrer TalkEdit avec urlValidator en plus de required
+- montrer UrlValidator : provide pour rajouter notre validator aux autres de base
+
+Slide 33 :
+
+Les tests : tester c'est douter
+
+Slide 34 :
+
+On va voir 3 test : simple, di et compo
+Sur le site d'Angular2 il conseil d'utiliser jasmine-core avec une version browser (plus simple que karma + phantomjs2) pour le moment...
+Je me suis fait avoir par @angular/testing
+
+Slide 35 :
+
+montrer unit-tests.html avec lib jasmine-core
+montrer le 1er test Server.spec.ts
+
+Slide 36 :
+
+montrer unit-tests.html avec ajout zone-test...
+montrer Talks.spec.ts avec provide d'un fakeServer
+
+Slide 37 :
+
+montrer unit-tests.html avec ajout @angular/*/testing.js, puis Promise.all(toImport), puis setBaseTestProviders
+montrer le refactor de Talks.spec.ts : utilisation de testComponentBuilder pour créer un compo et non plus une classe
+montrer Talk.spec.ts avec set data puis changeDétection() et expect du DOM
+
+
+
+
