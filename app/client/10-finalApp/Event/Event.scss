@@ -1,0 +1,30 @@
+.event {
+  clear: both;
+  margin: 30px;
+  border-bottom: 1px solid #fff;
+}
+
+.event-title {
+  font-size: 2em; margin-bottom: 10px;
+}
+
+.event-description { }
+
+.event-registrationUrl {
+  display: block;
+  background-color: #42A948;
+  padding: 15px;
+  margin: 30px 30%;
+  border-radius: 2px;
+  text-align: center;
+
+  & i {
+    margin-right: 10px;
+  }
+}
+
+  .event-registrationUrl-disable {
+    background-color: transparent;
+    cursor: default;
+    border: 1px solid #fff;
+  }

@@ -1,0 +1,36 @@
+.talk {
+  margin: 30px 0;
+}
+
+  .talk-speaker-container {
+    width: 15%;
+    display: inline-block;
+    padding: 10px;
+    box-sizing: border-box;
+    vertical-align: top;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+    .talk-speaker-photourl {
+      width: 100%;
+      max-width: 100px;
+    }
+
+    .talk-speaker-fullname {
+      display: block;
+    }
+
+  .talk-details-container {
+    width: 80%;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+  }
+
+    .talk-title {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .talk-description { }
