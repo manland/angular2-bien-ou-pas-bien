@@ -2,7 +2,8 @@ module.exports.client = {
     assets: {
         files: [
             './app/client/**/*.html',
-            './app/client/*/assets/*'
+            './app/client/*/assets/**/*',
+            './app/client/**/*.css'
         ],
         dest: './build/client/'
     },
