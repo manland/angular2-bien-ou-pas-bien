@@ -1,0 +1,34 @@
+.event {
+  clear: both;
+  margin: 30px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.event-link {
+  display: block;
+  background-color: #46B6AC;
+  padding: 10px;
+}
+
+.event-title {
+  text-transform: uppercase;
+  font-size: 2em;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.event-description {
+  padding: 20px;
+}
+
+.event-registrationUrl {
+  display: block;
+  color: #C2185B;
+  border-top: 1px solid rgba(0,0,0,.1);
+  text-align: right;
+  padding: 20px;
+
+  & i {
+    margin-right: 10px;
+  }
+}

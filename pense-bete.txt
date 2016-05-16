@@ -221,6 +221,13 @@ montrer unit-tests.html avec ajout @angular/*/testing.js, puis Promise.all(toImp
 montrer le refactor de Talks.spec.ts : utilisation de testComponentBuilder pour créer un compo et non plus une classe
 montrer Talk.spec.ts avec set data puis changeDétection() et expect du DOM
 
+Slide 38 :
+
+changement de model pour s'adapter au vrai du jug (event -> talks -> speaker)
+refactor css inspiré par matérial
+
+
+
 
 
 

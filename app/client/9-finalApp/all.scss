@@ -70,14 +70,15 @@ table {
 html, body, .app {
   display: block;
   height: 100%;
+  font-family: 'Roboto','Helvetica','Arial',sans-serif!important;
 }
 
 body {
-  background-color: #222222;
+  background-color: #FFF;
   position: relative;
 }
 body, a {
-  color: #fff;
+  color: #222;
   text-decoration: none;
 }
 
@@ -88,11 +89,30 @@ header {
   margin: 0 0 20px 0;
 
   & a {
+    text-transform: uppercase;
+    background: rgba(158,158,158,.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
     margin: 0 20px;
-    background-color: #ccc;
     padding: 10px;
     border-radius: 2px;
-    color: #222;
+    color: #000;
+    outline: none;
+    transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+    will-change: box-shadow;
+
+    &:hover {
+      background-color: rgba(158,158,158,.2);
+    }
+
+    &:active {
+      box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+      background-color: rgba(158,158,158,.4);
+    }
+
+    &:focus:not(:active) {
+      box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);
+      background-color: rgba(158,158,158,.4);
+    }
 
     & i {
       padding-right: 5px;

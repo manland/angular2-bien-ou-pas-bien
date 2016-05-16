@@ -22,7 +22,7 @@ export class StaticServer {
     static DIRECTORIES: Array<string> = [
         '0-theory', '1-firstCompo', '2-useCompo', '3-httpService', '4-firstService', '4.1-firstServiceInterface',
         '5-firstRoute', '5.1-firstRouteOneServer', '6-firstForm', '7-firstDirective', '8-firstTest', '8.1-testDi',
-        '8.2-testCompo', '9-nativescript', '10-finalApp'
+        '8.2-testCompo', '9-finalApp'
     ];
 
     start() {

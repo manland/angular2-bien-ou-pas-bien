@@ -18,11 +18,11 @@ export interface EventModel {
     selector: 'event',
     template: `
     <div class="event">
-        <a [routerLink]="['/events', event.id]"><h1 class="event-title">{{event.title}}</h1></a>
+        <a class="event-link" [routerLink]="['/events', event.id]"><h1 class="event-title">{{event.title}}</h1></a>
         <p class="event-description">{{event.description}}</p>
-        <a [ngClass]="{'event-registrationUrl': true, 'event-registrationUrl-disable': !event.open}" [href]="event.registrationurl">
+        <a *ngIf="event.open" class="event-registrationUrl" [href]="event.registrationurl">
             <i class="fa fa-sign-in" aria-hidden="true"></i>
-            <span>Register</span>
+            <span>Inscription</span>
             <span>Le {{event.date | date}}</span>
         </a>
     </div>`,
