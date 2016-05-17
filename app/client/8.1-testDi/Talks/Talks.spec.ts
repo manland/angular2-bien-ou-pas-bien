@@ -1,10 +1,9 @@
-import {beforeEachProviders, inject, async, it, describe} from '@angular/core/testing';
+import {beforeEachProviders, inject, async, it, describe} from "@angular/core/testing";
 import {Server} from "../Server";
 import {Observable} from "rxjs/Observable";
-import {Observer} from "rxjs/Observer";
 import {TalkModel} from "../Talk/Talk";
-import {Talks} from '../Talks/Talks';
-import 'rxjs/add/observable/of';
+import {Talks} from "../Talks/Talks";
+import "rxjs/add/observable/of";
 
 const fakeTalks = [{id: 0, speaker: {avatar: 'avatar'}, title: 'title', description: 'description'}];
 

@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {ROUTER_DIRECTIVES, OnActivate, RouteSegment} from "@angular/router";
+import {Component} from "@angular/core";
+import {OnActivate, RouteSegment} from "@angular/router";
 import {TalkModel, Talk} from "../Talk/Talk";
 import {Server, SERVER_PROVIDERS} from "../Server";
 import "rxjs/add/operator/filter";

@@ -1,12 +1,8 @@
-import {beforeEachProviders, inject, async, it, describe, setBaseTestProviders} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
-import {TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS} from '@angular/platform-browser-dynamic/testing';
-import {ROUTER_FAKE_PROVIDERS} from '@angular/router/testing';
-import {Server} from "../Server";
-import {Observable} from "rxjs/Observable";
-import {Observer} from "rxjs/Observer";
-import {TalkModel, Talk} from "../Talk/Talk";
-import 'rxjs/add/observable/of';
+import {inject, async, it, describe} from "@angular/core/testing";
+import {TestComponentBuilder, ComponentFixture} from "@angular/compiler/testing";
+import {ROUTER_FAKE_PROVIDERS} from "@angular/router/testing";
+import {Talk} from "../Talk/Talk";
+import "rxjs/add/observable/of";
 
 const fakeTalk = {id: 0, speaker: {avatar: '../0-theory/assets/moi.jpg'}, title: 'title', description: 'description'};
 

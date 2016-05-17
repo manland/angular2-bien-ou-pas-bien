@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {ROUTER_DIRECTIVES, RouteSegment, OnActivate} from "@angular/router";
+import {Component} from "@angular/core";
+import {RouteSegment, OnActivate} from "@angular/router";
 import {Server} from "../Server";
 
 export interface SpeakerModel {

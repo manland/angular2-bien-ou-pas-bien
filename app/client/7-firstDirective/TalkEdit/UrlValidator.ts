@@ -1,5 +1,5 @@
-import {provide, Directive, forwardRef} from '@angular/core';
-import {Control, NG_VALIDATORS} from '@angular/common';
+import {provide, Directive, forwardRef} from "@angular/core";
+import {Control, NG_VALIDATORS} from "@angular/common";
 
 function validateUrlFactory() {
     return (c: Control) => {
